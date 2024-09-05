@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class parcial {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Solicitar datos del cliente y producto
+            System.out.print("Ingrese el nombre del cliente: ");
+            String nombreCliente = scanner.nextLine();
+            
+            System.out.print("Ingrese el nombre del producto: ");
+            String nombreProducto = scanner.nextLine();
+            
+            // Solicitar el valor unitario
+            System.out.print("Ingrese el valor unitario del producto (mayor a 0): ");
+            double valorUnitario = scanner.nextDouble();
+            if (valorUnitario <= 0) {
+                System.out.println("Error en la entrada de datos: El valor unitario debe ser mayor a 0.");
+                return;
+            }
+
+            // Solicitar la cantidad a comprar
+            System.out.print("Ingrese la cantidad a comprar (mayor a 0): ");
+            int cantidad = scanner.nextInt();
+            if (cantidad <= 0) {
+                System.out.println("Error en la entrada de datos: La cantidad debe ser mayor a 0.");
+                return;
+            }
+
+            // Calcular valor bruto
+            double valorBruto = valorUnitario * cantidad;
+
+            // Calcular descuento
+            double descuento = 0;
+            if (cantidad >= 10 && cantidad < 20) {
+                descuento = 0.05 * valorBruto;
+            } else if (cantidad >= 20) {
+                descuento = 0.07 * valorBruto;
+            }
+
+            // Calcular valor neto
+            double valorNeto = valorBruto - descuento;
+
+            // Mostrar resultados
+            System.out.println("\n--- Detalle de la compra ---");
+            System.out.println("Nombre del Cliente: " + nombreCliente);
+            System.out.println("Nombre del Producto: " + nombreProducto);
+            System.out.println("Valor Unitario: " + String.format("%.2f", valorUnitario));
+            System.out.println("Cantidad: " + cantidad);
+            System.out.println("Valor Bruto: " + String.format("%.2f", valorBruto));
+            System.out.println("Descuento: " + String.format("%.2f", descuento));
+            System.out.println("Valor Neto: " + String.format("%.2f", valorNeto));
+
+        } catch (Exception e) {
+            System.out.println("Error en la entrada de datos: Asegúrese de ingresar valores válidos.");
+        }
+
+        scanner.close();
+    }
+}
